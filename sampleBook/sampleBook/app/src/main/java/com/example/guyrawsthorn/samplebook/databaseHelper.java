@@ -66,13 +66,11 @@ public class databaseHelper extends SQLiteOpenHelper {
                 "title TEXT, " +
                 "body TEXT )");
     }
-        // create fresh books table
+    // create fresh books table
 
 //    public databaseHelper open(){
 //        mDbHelper.getReadableDatabase();
 //        return this;
-
-
 
 
     public boolean addNote(Note note) {
@@ -100,7 +98,7 @@ public class databaseHelper extends SQLiteOpenHelper {
 
     public Cursor fetchAllNotes() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor mCursor = db.query(TABLE_NOTES, new String[] {KEY_ID,
+        Cursor mCursor = db.query(TABLE_NOTES, new String[]{KEY_ID,
                         KEY_TITLE, KEY_BODY},
                 null, null, null, null, null);
 
@@ -146,19 +144,19 @@ public class databaseHelper extends SQLiteOpenHelper {
 
     // ArrayList<String>
 
-public  Cursor getAllTitles() {
+    public Cursor getAllTitles() {
 
 //    ArrayList<String> titles = new ArrayList<String>();
 
-    // 1. build the query
+        // 1. build the query
 
 
-    // 2. get reference to writable DB
+        // 2. get reference to writable DB
 //    SQLiteDatabase db = this.getWritableDatabase();
-    SQLiteDatabase db = this.getReadableDatabase();
-    Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NOTES, null);
-    return cursor;
-}
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NOTES, null);
+        return cursor;
+    }
 
     // 3. go over each row, build book and add it to list
 //    if (cursor.moveToFirst()) {
@@ -176,8 +174,7 @@ public  Cursor getAllTitles() {
     // return books
 
 
-
-     //Get All Books
+    //Get All Books
     public List<Note> getAllNotes() {
         List<Note> notes = new LinkedList<Note>();
 
@@ -207,6 +204,7 @@ public  Cursor getAllTitles() {
         // return books
         return notes;
     }
+}
 
 
     //get All Notes
@@ -256,5 +254,5 @@ public  Cursor getAllTitles() {
 //        Log.d("deleteBook", book.toString());
 //
 //    }
-}
+
 

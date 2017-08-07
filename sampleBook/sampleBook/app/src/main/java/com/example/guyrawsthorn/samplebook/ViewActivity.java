@@ -40,11 +40,6 @@ public class ViewActivity extends ListActivity {
                 dbHelper.KEY_TITLE,
                 dbHelper.KEY_BODY};
 
-//        ArrayList<String> list = dbHelper.getAllTitles();
-
-//        for (String s : list){
-//            Log.d("array list contains: ", s);
-//        }
 
         int[] to = new int[]{
                 R.id.lvTitle,
@@ -59,33 +54,20 @@ public class ViewActivity extends ListActivity {
     }
 }
 
+//      public void ArrayListView(){
+
+ //       ArrayList<String> list = dbHelper.getAllTitles();
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.activity_note, list);
-//
+//        list_view = (ListView) findViewById(R.id.list);
 //        list_view.setAdapter( adapter );
 
 
 
 
 
-        //ArrayAdapter<String> listAdapter ;
-
-
-        //list_view = (ListView) findViewById(R.id.list);
-
-        //list_view.setAdapter( listAdapter );
-
-
-//        String[] from = new String [] {
-//                dbHelper.KEY_TITLE,
-//                dbHelper.KEY_BODY};
-//
-//        list_view = (ListView) findViewById(R.id.list);
-//
-//        ArrayList<String> notesList = new ArrayList<String>();
-//
-//        notesList.addAll( Arrays.asList(from) );
-//
-//        Adapter = new ArrayAdapter<String>(this, R.layout.activity_view, notesList);
+//         ArrayAdapter<Note> listAdapter ;
+//        listAdapter = new ArrayAdapter<Note>(this, R.layout.activity_view, list);
+//        list_view.setAdapter( listAdapter );
 
 
         //populateListView();
