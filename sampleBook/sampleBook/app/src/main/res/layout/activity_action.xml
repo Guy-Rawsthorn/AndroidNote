@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:paddingBottom="10px"
+android:paddingLeft="10px"
+android:paddingRight="10px"
+android:paddingTop="10px"
+
+tools:context="com.example.guyrawsthorn.samplebook.ActionActivity">
+
+<TextView
+    android:id="@+id/textView1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/title" />
+
+<EditText
+    android:id="@+id/etTitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.27"
+    android:ems="10"
+    android:inputType="textMultiLine" />
+
+<TextView
+    android:id="@+id/textView2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/body" />
+
+<EditText
+    android:id="@+id/etNote"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.27"
+    android:ems="50"
+    android:inputType="textMultiLine">
+
+    <requestFocus />
+</EditText>
+
+<Button
+    android:id="@+id/saveNote"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/saveNote"
+    android:layout_weight="8.37" />
+
+<Button
+    android:id="@+id/home"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Back" />
+
+
+</LinearLayout>
