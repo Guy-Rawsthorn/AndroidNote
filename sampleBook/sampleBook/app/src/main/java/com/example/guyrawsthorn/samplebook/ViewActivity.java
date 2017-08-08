@@ -18,27 +18,38 @@ import java.util.List;
 public class ViewActivity extends ListActivity {
 
     SimpleCursorAdapter dataAdapter;
-    databaseHelper dbHelper = new databaseHelper(this);
+    private databaseHelper db;
+    private ListView dataList;
+    ArrayList<String> databaseList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         //ListView listView;
-        databaseHelper db = new databaseHelper(this);
+        //databaseHelper db = new databaseHelper(this);
 
         //istView = (ListView) findViewById(R.id.list);
-        DisplayList();
+        //DisplayList();
+        newMethod();
 
     }
 
-    public void DisplayList() {
+    public void newMethod(){
+        db = new databaseHelper(this);
+        List<Note> values = db.getAll();
+        ArrayAdapter<Note> adapter = new ArrayAdapter<Note>(this, android.R.layout.simple_list_item_1,values);
+        setListAdapter(adapter);
+    }
 
-        Cursor cursor = dbHelper.getAllTitles();
+    public void DisplayList() {
+        databaseHelper db = new databaseHelper(this);
+
+        Cursor cursor = db.getAllTitles();
 
         String[] from = new String[]{
-                dbHelper.KEY_TITLE,
-                dbHelper.KEY_BODY};
+                db.KEY_TITLE,
+                db.KEY_BODY};
 
 
         int[] to = new int[]{
@@ -47,11 +58,13 @@ public class ViewActivity extends ListActivity {
         };
 
         dataAdapter = new SimpleCursorAdapter(this, R.layout.activity_note, cursor, from, to, 0);
-        dbHelper.close();
+        db.close();
 
         ListView listView = getListView();
         listView.setAdapter(dataAdapter);
     }
+
+
 }
 
 //      public void ArrayListView(){

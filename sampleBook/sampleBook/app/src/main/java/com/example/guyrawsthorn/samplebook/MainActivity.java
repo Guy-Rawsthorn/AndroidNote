@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Log.d("debug", "jhdjhdjhdjhjdhjdhdhjd");
+        Log.d("debug", "this is the main acctivity debugger");
 
         }
 

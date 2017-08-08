@@ -108,6 +108,40 @@ public class databaseHelper extends SQLiteOpenHelper {
         return mCursor;
     }
 
+    public Cursor getAllTitles() {
+
+//    ArrayList<String> titles = new ArrayList<String>();
+
+        // 1. build the query
+
+
+        // 2. get reference to writable DB
+//    SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NOTES, null);
+        return cursor;
+    }
+
+    public List<Note> getAll(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<Note> noteList = new ArrayList<Note>();
+        String query = "SELECT * FROM " + TABLE_NOTES;
+        Cursor cursor = db.rawQuery(query,null);
+        if(cursor.moveToFirst()){
+            do{
+                Note note = new Note();
+                note.setId(cursor.getInt(0));
+                note.setTitle(cursor.getString(1));
+                note.setTitle(cursor.getString(2));
+                noteList.add(note);
+            }while(cursor.moveToNext());
+
+        }
+        cursor.close();
+        return noteList;
+
+    }
+
 //    public Note getNote(int id) {
 //
 //        // 1. get reference to readable DB
@@ -144,19 +178,7 @@ public class databaseHelper extends SQLiteOpenHelper {
 
     // ArrayList<String>
 
-    public Cursor getAllTitles() {
 
-//    ArrayList<String> titles = new ArrayList<String>();
-
-        // 1. build the query
-
-
-        // 2. get reference to writable DB
-//    SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NOTES, null);
-        return cursor;
-    }
 
     // 3. go over each row, build book and add it to list
 //    if (cursor.moveToFirst()) {
@@ -175,7 +197,7 @@ public class databaseHelper extends SQLiteOpenHelper {
 
 
     //Get All Books
-    public List<Note> getAllNotes() {
+    public List<Note> getListNotes() {
         List<Note> notes = new LinkedList<Note>();
 
         // 1. build the query
