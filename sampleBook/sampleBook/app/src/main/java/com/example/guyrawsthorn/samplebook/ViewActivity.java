@@ -18,8 +18,8 @@ import java.util.List;
 public class ViewActivity extends ListActivity {
 
     SimpleCursorAdapter dataAdapter;
-    private databaseHelper db;
-    private ListView dataList;
+    public databaseHelper dbHelper;
+    //private ListView dataList;
     ArrayList<String> databaseList = new ArrayList<String>();
 
     @Override
@@ -30,26 +30,39 @@ public class ViewActivity extends ListActivity {
         //databaseHelper db = new databaseHelper(this);
 
         //istView = (ListView) findViewById(R.id.list);
-        //DisplayList();
-        newMethod();
+        DisplayList();
+
 
     }
+//
+//    public void newMethod(){
+//        List<Note> values = dbHelper.getAllNotes();
+//        ArrayAdapter<Note> adapter = new ArrayAdapter<Note>(this, android.R.layout.simple_list_item_1,values);
+//        setListAdapter(adapter);
+//    }
+//
+//    public void cursorMethod(){
+//        // Find ListView to populate
+//        //Cursor cursor = db.getAllTitles();
+//        Cursor cursor = dbHelper.getAllTitles();
+//        ListView lvItems = (ListView) findViewById(R.id.list);
+//// Setup cursor adapter using cursor from last step
+//
+//        TodoCursorAdapter todoAdapter = new TodoCursorAdapter(this, cursor);
+//// Attach cursor adapter to the ListView
+//        lvItems.setAdapter(todoAdapter);
+//    }
 
-    public void newMethod(){
-        db = new databaseHelper(this);
-        List<Note> values = db.getAll();
-        ArrayAdapter<Note> adapter = new ArrayAdapter<Note>(this, android.R.layout.simple_list_item_1,values);
-        setListAdapter(adapter);
-    }
+
 
     public void DisplayList() {
-        databaseHelper db = new databaseHelper(this);
 
-        Cursor cursor = db.getAllTitles();
+        databaseHelper dbHelper = new databaseHelper(this);
+        Cursor cursor = dbHelper.getAllTitles();
 
         String[] from = new String[]{
-                db.KEY_TITLE,
-                db.KEY_BODY};
+                dbHelper.KEY_TITLE,
+                dbHelper.KEY_BODY};
 
 
         int[] to = new int[]{
@@ -58,15 +71,12 @@ public class ViewActivity extends ListActivity {
         };
 
         dataAdapter = new SimpleCursorAdapter(this, R.layout.activity_note, cursor, from, to, 0);
-        db.close();
+
 
         ListView listView = getListView();
         listView.setAdapter(dataAdapter);
     }
-
-
 }
-
 //      public void ArrayListView(){
 
  //       ArrayList<String> list = dbHelper.getAllTitles();

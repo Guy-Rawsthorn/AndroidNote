@@ -28,13 +28,14 @@ public class databaseHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_NOTES = "notes";
 
-    private databaseHelper mDbHelper;
+    //private databaseHelper mDbHelper;
     private SQLiteDatabase mDd;
+    public Context context;
 //
 //    Context mCtx;
 
     // Notes Table Columns names
-    public static final String KEY_ID = "id";
+    public static final String KEY_ID = "_id";
     public static final String KEY_TITLE = "title";
     public static final String KEY_BODY = "body";
 
@@ -43,15 +44,16 @@ public class databaseHelper extends SQLiteOpenHelper {
     // Constuctor
     public databaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         // SQL statement to create book table
         String CREATE_NOTE_TABLE = "CREATE TABLE notes ( " +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "title TEXT, " +
-                "body TEXT )";
+                KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KEY_TITLE + " TEXT, " +
+                KEY_BODY + " TEXT )";
 
         // create Note table in DB
         db.execSQL(CREATE_NOTE_TABLE);
@@ -62,9 +64,9 @@ public class databaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("DROP TABLE notes");
         db.execSQL("CREATE TABLE IF NOT EXISTS notes ( " +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "title TEXT, " +
-                "body TEXT )");
+                KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KEY_TITLE + " TEXT, " +
+                KEY_BODY + " TEXT )");
     }
     // create fresh books table
 
@@ -108,40 +110,6 @@ public class databaseHelper extends SQLiteOpenHelper {
         return mCursor;
     }
 
-    public Cursor getAllTitles() {
-
-//    ArrayList<String> titles = new ArrayList<String>();
-
-        // 1. build the query
-
-
-        // 2. get reference to writable DB
-//    SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NOTES, null);
-        return cursor;
-    }
-
-    public List<Note> getAll(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        List<Note> noteList = new ArrayList<Note>();
-        String query = "SELECT * FROM " + TABLE_NOTES;
-        Cursor cursor = db.rawQuery(query,null);
-        if(cursor.moveToFirst()){
-            do{
-                Note note = new Note();
-                note.setId(cursor.getInt(0));
-                note.setTitle(cursor.getString(1));
-                note.setTitle(cursor.getString(2));
-                noteList.add(note);
-            }while(cursor.moveToNext());
-
-        }
-        cursor.close();
-        return noteList;
-
-    }
-
 //    public Note getNote(int id) {
 //
 //        // 1. get reference to readable DB
@@ -178,7 +146,19 @@ public class databaseHelper extends SQLiteOpenHelper {
 
     // ArrayList<String>
 
+    public Cursor getAllTitles() {
 
+//    ArrayList<String> titles = new ArrayList<String>();
+
+        // 1. build the query
+
+
+        // 2. get reference to writable DB
+//    SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NOTES, null);
+        return cursor;
+    }
 
     // 3. go over each row, build book and add it to list
 //    if (cursor.moveToFirst()) {
@@ -197,7 +177,7 @@ public class databaseHelper extends SQLiteOpenHelper {
 
 
     //Get All Books
-    public List<Note> getListNotes() {
+    public List<Note> getAllNotes() {
         List<Note> notes = new LinkedList<Note>();
 
         // 1. build the query
@@ -229,7 +209,7 @@ public class databaseHelper extends SQLiteOpenHelper {
 }
 
 
-    //get All Notes
+//get All Notes
 
 //    public ArrayList<NoteListView> getAllNotes(){
 //
