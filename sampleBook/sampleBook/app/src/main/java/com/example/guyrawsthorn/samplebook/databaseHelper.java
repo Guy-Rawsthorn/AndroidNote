@@ -25,14 +25,10 @@ public class databaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     // Database Name
     private static final String DATABASE_NAME = "NoteDB";
-
     private static final String TABLE_NOTES = "notes";
 
-    //private databaseHelper mDbHelper;
     private SQLiteDatabase mDd;
     public Context context;
-//
-//    Context mCtx;
 
     // Notes Table Columns names
     public static final String KEY_ID = "_id";
@@ -68,15 +64,9 @@ public class databaseHelper extends SQLiteOpenHelper {
                 KEY_TITLE + " TEXT, " +
                 KEY_BODY + " TEXT )");
     }
-    // create fresh books table
-
-//    public databaseHelper open(){
-//        mDbHelper.getReadableDatabase();
-//        return this;
 
 
     public boolean addNote(Note note) {
-        // Log.d("addNote", note.toString());
         // 1. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -147,34 +137,14 @@ public class databaseHelper extends SQLiteOpenHelper {
     // ArrayList<String>
 
     public Cursor getAllTitles() {
-
-//    ArrayList<String> titles = new ArrayList<String>();
-
         // 1. build the query
 
-
         // 2. get reference to writable DB
-//    SQLiteDatabase db = this.getWritableDatabase();
+
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NOTES, null);
         return cursor;
     }
-
-    // 3. go over each row, build book and add it to list
-//    if (cursor.moveToFirst()) {
-//        do {
-//            titles.add(cursor.getString(1));
-//        } while (cursor.moveToNext());
-//    }
-//
-//    db.close();
-//    return titles;
-//    cursor.close();
-
-    // Log.d("getAllNotes()", notes.toString());
-
-    // return books
-
 
     //Get All Books
     public List<Note> getAllNotes() {
